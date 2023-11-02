@@ -4,7 +4,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 const prettyCodeOptions = {
   theme: "min-dark",
-  onVisitLine(node) {
+  onVisitLine(node: any) {
     if (node.children.length === 0) {
       node.children = [
         {
@@ -14,10 +14,10 @@ const prettyCodeOptions = {
       ];
     }
   },
-  onVisitHighlightedLine(node) {
+  onVisitHighlightedLine(node: any) {
     node.properties.className.push("highlighted");
   },
-  onVisitHighlightedWord(node) {
+  onVisitHighlightedWord(node: any) {
     node.properties.className = ["word"];
   },
   tokensMap: {},

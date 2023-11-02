@@ -46,7 +46,7 @@ globalStyle("*", {
       animationDuration: "0.01ms !important",
       animationIterationCount: "1 !important",
       transitionDuration: "0.01ms !important",
-      scrollBehavior: "auto !important",
+      scrollBehavior: "auto",
     },
   },
 });
