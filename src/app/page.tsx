@@ -30,7 +30,7 @@ export default function Home() {
               and <em>Mimir</em>. I love the <em>weird web</em>, I collect{" "}
               <em>physical media formats</em>, I play lots of{" "}
               <em>tabletop roleplaying games</em>, and I love to cook,
-              especially <em>korean food</em>.
+              especially <em>Korean food</em>.
             </p>
           </GridRight>
           <GridBreakout>
