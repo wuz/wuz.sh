@@ -32,7 +32,7 @@ export default async function Page() {
     <>
       <Header />
       <GridLayout>
-        <GridLeft>A collection of things I've written.</GridLeft>
+        <GridLeft>A collection of things I&apos;ve written.</GridLeft>
         <GridRight>
           <ul role="list">
             {posts.map((post) => (
