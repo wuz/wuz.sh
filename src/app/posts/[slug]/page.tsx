@@ -23,6 +23,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <Header />
       <ContentGrid>
+        {post.coverImage && (
+          <img src={post.coverImage} alt={post.description} />
+        )}
         <h1>{post.title}</h1>
         <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
           {format(parseISO(post.date), "MMM d, yyyy")}

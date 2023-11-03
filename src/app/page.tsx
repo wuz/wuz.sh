@@ -11,6 +11,7 @@ import AutoGrid from "@/components/auto-grid";
 import PostsDisplay from "@/components/posts-display";
 import Header from "@/components/header";
 import { Lead } from "@/components/type";
+import Alert from "@/components/alert";
 
 export default function Home() {
   return (
@@ -22,6 +23,15 @@ export default function Home() {
             <div className="flow">
               <h1>Conlin Durbin</h1>
               <h2>Staff Frontend Engineer. Typescripter. TTRPG-er.</h2>
+              <Alert>
+                <h3>I&apos;m looking for work!</h3>
+                <p>
+                  Check out my{" "}
+                  <a href="https://docs.google.com/document/d/1eZOEDUWytY6IezWSk0_NlCE_YmcYQeRx7Ti2jJ9805c/edit?usp=sharing">
+                    resume
+                  </a>
+                </p>
+              </Alert>
             </div>
           </GridLeft>
           <GridRight>

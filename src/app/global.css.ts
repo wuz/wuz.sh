@@ -125,10 +125,20 @@ globalStyle(".flow > * + *", { marginTop: "1em" });
 
 globalStyle("time", {
   color: `rgb(${vars.color.mutedRgb})`,
+  fontFamily: "monospace",
+  fontSize: "0.75em",
+});
+
+globalStyle(".muted", {
+  color: `rgb(${vars.color.mutedRgb})`,
 });
 
 globalStyle("code", {
   padding: "4px 4px",
+});
+
+globalStyle("pre", {
+  borderRadius: vars.radius.small,
 });
 
 globalStyle("pre > code", {

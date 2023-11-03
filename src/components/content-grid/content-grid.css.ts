@@ -13,7 +13,8 @@ globalStyle(`${contentGrid} > * + *`, {
   marginTop: "0.8em",
 });
 
-globalStyle(`.full-bleed`, {
+globalStyle(`.full-bleed, [data-rehype-pretty-code-fragment]`, {
   width: "100%",
   gridColumn: "1 / 4",
+  margin: "1.5em 0",
 });

@@ -72,6 +72,16 @@ import { createThemeContract, style, assignVars } from "@vanilla-extract/css";
 }
 */
 
+const overCast = "128,131,145";
+const grayHaze = "209,226,232";
+const snowCrash = "241,241,241";
+const shadowAura = "11,25,31";
+const terminalDreams = "0,0,0";
+const purplePing = "190,115,255";
+const relayRed = "255,95,92";
+const electricBlue = "115,255,255";
+const hackerPink = "255,44,117";
+
 export const vars = createThemeContract({
   width: {
     maxWidth: null,
@@ -80,8 +90,10 @@ export const vars = createThemeContract({
     foregroundRgb: null,
     backgroundRgb: null,
     mutedRgb: null,
+    brandRgb: null,
   },
   radius: {
+    small: null,
     medium: null,
   },
   font: {
@@ -98,8 +110,10 @@ export const themeClass = style({
       foregroundRgb: "0, 0, 0",
       backgroundRgb: "240, 240, 240",
       mutedRgb: "160, 160, 160",
+      brandRgb: hackerPink,
     },
     radius: {
+      small: "8px",
       medium: "12px",
     },
     font: {
@@ -112,6 +126,7 @@ export const themeClass = style({
         backgroundRgb: "0, 0, 0",
         foregroundRgb: "240, 240, 240",
         mutedRgb: "160, 160, 160",
+        brandRgb: hackerPink,
       }),
     },
   },
