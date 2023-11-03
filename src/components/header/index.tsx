@@ -4,14 +4,14 @@ import { header, nav } from "./header.css";
 const Header = () => {
   return (
     <header className={header}>
-      <Logo />
+      <a href="/" aria-label="Home">
+        <Logo />
+      </a>
+      <nav className={nav}>
+        <a href="/posts">Writing</a>
+      </nav>
     </header>
   );
-
-  // <nav className={nav}>
-  //   <a href="/">Home</a>
-  //   <a href="/posts">Writing</a>
-  // </nav>
 };
 
 export default Header;

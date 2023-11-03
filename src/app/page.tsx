@@ -10,6 +10,7 @@ import me from "./me.jpeg";
 import AutoGrid from "@/components/auto-grid";
 import PostsDisplay from "@/components/posts-display";
 import Header from "@/components/header";
+import { Lead } from "@/components/type";
 
 export default function Home() {
   return (
@@ -18,24 +19,32 @@ export default function Home() {
       <main>
         <GridLayout>
           <GridLeft>
-            <h1>Conlin Durbin</h1>
-            <h2>Staff Frontend Engineer. Typescripter. TTRPG-er.</h2>
+            <div className="flow">
+              <h1>Conlin Durbin</h1>
+              <h2>Staff Frontend Engineer. Typescripter. TTRPG-er.</h2>
+            </div>
           </GridLeft>
           <GridRight>
-            <p>
-              Howdy, I&apos;m Conlin. I live in Indianapolis and I love to
-              travel. I build incredible frontends for companies like{" "}
-              <em>HackerRank</em>, <em>Payscale</em>, and <em>Lessonly</em>.
-              I&apos;ve also worked for wonderful startups like <em>Agora</em>{" "}
-              and <em>Mimir</em>. I love the <em>weird web</em>, I collect{" "}
-              <em>physical media formats</em>, I play lots of{" "}
-              <em>tabletop roleplaying games</em>, and I love to cook,
-              especially <em>Korean food</em>.
-            </p>
+            <div className="flow">
+              <Lead>
+                Howdy, I&apos;m Conlin. I live in Indianapolis and I love to
+                travel. I&apos;ve built frontends for companies like{" "}
+                <em>HackerRank</em>, <em>Payscale</em>, and <em>Lessonly</em>.
+                I&apos;ve also worked for wonderful startups like <em>Agora</em>{" "}
+                and <em>Mimir</em>.
+              </Lead>
+              <Lead>
+                I love the <em>weird web</em>, I collect{" "}
+                <em>physical media formats</em>, I play lots of{" "}
+                <em>tabletop roleplaying games</em>, and I love to cook,
+                especially <em>Korean food</em>.
+              </Lead>
+            </div>
           </GridRight>
           <GridBreakout>
             <div style={{ height: 450, position: "relative" }}>
               <Image
+                priority
                 src={me}
                 alt="A picture of me"
                 fill
@@ -56,6 +65,9 @@ export default function Home() {
                 <ul>
                   <li>
                     <a href="https://linkedin.com/in/wuz">LinkedIn</a>
+                  </li>
+                  <li>
+                    <a href="https://dev.to/wuz">dev.to</a>
                   </li>
                   <li>
                     <a href="https://github.com/wuz">Github</a>

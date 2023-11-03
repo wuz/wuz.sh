@@ -20,19 +20,25 @@ const Post = ({ post }: { post: Post }) => {
   );
 };
 
-export default async function PostsDisplay() {
-  const posts = allPosts.sort((a, b) =>
+type PostsDisplayProps = {
+  limit?: number;
+};
+
+export default async function PostsDisplay({ limit = 5 }: PostsDisplayProps) {
+  let posts = allPosts.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
-  return null;
+  if (limit) {
+    posts = posts.slice(0, limit);
+  }
   return (
-    <>
-      <h3>Recent Posts</h3>
+    <div className="flow">
+      <h3>Recent Writing</h3>
       <ul role="list">
         {posts.map((post) => (
           <Post post={post} key={post._id} />
         ))}
       </ul>
-    </>
+    </div>
   );
 }

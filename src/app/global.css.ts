@@ -1,6 +1,48 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { vars } from "./theme.css";
 
+/* Remove default margin */
+globalStyle("body, h1, h2, h3, h4, p, figure, blockquote, dl, dd", {
+  marginBlockEnd: 0,
+});
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+globalStyle("ul[role='list'], ol[role='list']", {
+  listStyle: "none",
+  padding: 0,
+});
+
+globalStyle("ul, ol", {
+  padding: 0,
+  margin: 0,
+  paddingInlineStart: "2ch",
+});
+
+globalStyle("li", {
+  marginBottom: "1ch",
+});
+
+/* Set core root defaults */
+globalStyle("html:focus-within", {
+  scrollBehavior: "smooth",
+  "@media": {
+    "(prefers-reduced-motion)": {
+      scrollBehavior: "auto",
+    },
+  },
+});
+
+/* Make images easier to work with */
+globalStyle("img, picture", {
+  maxWidth: "100%",
+  display: "block",
+});
+
+/* Inherit fonts for inputs and buttons */
+globalStyle("input, button, textarea, select", {
+  font: "inherit",
+});
+
 globalStyle("html", {
   height: "auto",
   "@media": {
@@ -34,6 +76,9 @@ globalStyle("body > .content", {
   padding: "2% 5%",
   boxShadow: `1px 3px 10px rgba(0,0,0,0.16)`,
   borderRadius: vars.radius.medium,
+  height: "calc(100vh - 2%)",
+  maxWidth: 1440,
+  margin: "0 auto",
 });
 
 globalStyle("*", {
@@ -67,53 +112,16 @@ globalStyle("p", {
   maxWidth: "60ch",
 });
 
+globalStyle("p + p", {
+  marginTop: "1em",
+});
+
 globalStyle("h1, h2, h3", {
   fontVariationSettings: '"wght" 800',
   fontWeight: 800,
 });
 
-/* Remove default margin */
-globalStyle("body, h1, h2, h3, h4, p, figure, blockquote, dl, dd", {
-  marginBlockEnd: 0,
-});
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-globalStyle("ul[role='list'], ol[role='list']", {
-  listStyle: "none",
-  padding: 0,
-  margin: 0,
-});
-
-globalStyle("ul, ol", {
-  padding: 0,
-  margin: 0,
-  paddingInlineStart: "2ch",
-});
-
-globalStyle("li", {
-  marginBottom: "1ch",
-});
-
-/* Set core root defaults */
-globalStyle("html:focus-within", {
-  scrollBehavior: "smooth",
-  "@media": {
-    "(prefers-reduced-motion)": {
-      scrollBehavior: "auto",
-    },
-  },
-});
-
-/* Make images easier to work with */
-globalStyle("img, picture", {
-  maxWidth: "100%",
-  display: "block",
-});
-
-/* Inherit fonts for inputs and buttons */
-globalStyle("input, button, textarea, select", {
-  font: "inherit",
-});
+globalStyle(".flow > * + *", { marginTop: "1em" });
 
 globalStyle("time", {
   color: `rgb(${vars.color.mutedRgb})`,
@@ -150,4 +158,41 @@ globalStyle("code[data-line-numbers-max-digits='2'] > [data-line]::before", {
 
 globalStyle("code[data-line-numbers-max-digits='3'] > [data-line]::before", {
   width: "3rem",
+});
+
+globalStyle(`[style*="--aspectRatio"] > :first-child`, {
+  width: "100%",
+});
+
+globalStyle(`[style*="--aspectRatio"] > img`, {
+  height: "auto",
+});
+
+globalStyle(`[style*="--aspectRatio"]`, {
+  "@supports": {
+    "(--custom: property)": {
+      position: "relative",
+    },
+  },
+});
+
+globalStyle(`[style*="--aspectRatio"]::before`, {
+  "@supports": {
+    "(--custom: property)": {
+      content: '""',
+      display: "block",
+      paddingBottom: `calc(100% / (16 / 9))`,
+    },
+  },
+});
+
+globalStyle(`[style*="--aspectRatio"] > :first-child`, {
+  "@supports": {
+    "(--custom: property)": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      height: "100%",
+    },
+  },
 });

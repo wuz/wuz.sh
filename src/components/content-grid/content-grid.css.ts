@@ -10,7 +10,7 @@ globalStyle(`${contentGrid} > *`, {
 });
 
 globalStyle(`${contentGrid} > * + *`, {
-  marginTop: 16,
+  marginTop: "0.8em",
 });
 
 globalStyle(`.full-bleed`, {
