@@ -206,3 +206,13 @@ globalStyle(`[style*="--aspectRatio"] > :first-child`, {
     },
   },
 });
+
+globalStyle(`blockquote`, {
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gridTemplateRows: "1fr auto",
+  borderLeft: `2px solid rgb(${vars.color.brandRgb})`,
+  margin: "16px 0",
+  padding: 16,
+  gap: 8,
+});

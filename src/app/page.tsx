@@ -11,7 +11,8 @@ import AutoGrid from "@/components/auto-grid";
 import PostsDisplay from "@/components/posts-display";
 import Header from "@/components/header";
 import { Lead } from "@/components/type";
-import Alert from "@/components/alert";
+import WorkHistory from "./WorkHistory";
+import Projects from "./Projects";
 
 export default function Home() {
   return (
@@ -23,15 +24,6 @@ export default function Home() {
             <div className="flow">
               <h1>Conlin Durbin</h1>
               <h2>Staff Frontend Engineer. Typescripter. TTRPG-er.</h2>
-              <Alert>
-                <h3>I&apos;m looking for work!</h3>
-                <p>
-                  Check out my{" "}
-                  <a href="https://docs.google.com/document/d/1eZOEDUWytY6IezWSk0_NlCE_YmcYQeRx7Ti2jJ9805c/edit?usp=sharing">
-                    resume
-                  </a>
-                </p>
-              </Alert>
             </div>
           </GridLeft>
           <GridRight>
@@ -92,29 +84,8 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <div>
-                <h3>Projects</h3>
-                <ul>
-                  <li>
-                    <a href="https://dmpad.app">dmpad</a> &mdash; A note taking
-                    application for dungeon masters.
-                  </li>
-                  <li>
-                    <a href="https://hasbeenwizards.com">HasBeenWizards</a>{" "}
-                    &mdash; Side project, creating tabletop roleplaying games
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3>Work History</h3>
-                <ul>
-                  <li>Payscale &mdash; Tech Lead Manager</li>
-                  <li>Agora &mdash; Senior Software Engineer</li>
-                  <li>HackerRank &mdash; Senior Software Engineer</li>
-                  <li>Lessonly &mdash; Software Engineer</li>
-                  <li>Mimir &mdash; Founding Engineer</li>
-                </ul>
-              </div>
+              <Projects />
+              <WorkHistory />
             </AutoGrid>
           </GridFull>
         </GridLayout>

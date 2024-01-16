@@ -7,8 +7,10 @@ const Header = () => {
       <a href="/" aria-label="Home">
         <Logo />
       </a>
+      <strong>wuz.sh</strong>
       <nav className={nav}>
         <a href="/posts">Writing</a>
+        <a href="/readme">Readme</a>
       </nav>
     </header>
   );
