@@ -11,6 +11,10 @@ const Projects = () => {
           <a href="https://hasbeenwizards.com">HasBeenWizards</a> &mdash; Side
           project, creating tabletop roleplaying games
         </li>
+        <li>
+          <a href="https://github.com/wuz/cantrip.nvim">cantrip.nvim</a> &mdash;
+          Neovim + dark magic
+        </li>
       </ul>
     </div>
   );
