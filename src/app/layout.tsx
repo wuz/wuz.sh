@@ -6,7 +6,7 @@ import Favicon from "@/components/favicon";
 
 export const metadata: Metadata = {
   title: "Conlin Durbin",
-  description: "Staff Frontend Engineer. Typescripter. TTRPG-er",
+  description: "Senior Frontend Engineer. Typescripter. TTRPG-er",
 };
 
 export default function RootLayout({
