@@ -30,14 +30,17 @@ export default function Home() {
               <p>
                 Hello there! I&apos;m Conlin (but some internet folks call me
                 Wuz). I am a senior software engineer (with management
-                experience). I&apos;m fascinated by the intersection of art,
-                community and technology.
+                experience).{" "}
+                <strong>
+                  I&apos;m fascinated by the intersection of art, community and
+                  technology.
+                </strong>
               </p>
               <p>
                 I have about 1000 hobbies and I&apos;m always excited to learn
                 new things. This README is my personal &quot;documenation&quot;,
                 a way for you to get to know what I care about and where my
-                focuses lie.
+                focus is on any given day.
               </p>
               <h3>Personal Principles</h3>
               <ul>
@@ -57,7 +60,7 @@ export default function Home() {
                 </li>
                 <li>
                   <strong>We all want to build a beautiful inn.</strong> Focus
-                  on master, cooperation, and better work over stats-fiddling
+                  on mastery, cooperation, and better work over stats-fiddling
                   and game-playing.
                 </li>
               </ul>

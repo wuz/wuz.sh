@@ -43,10 +43,10 @@ export default function Home() {
                 architectural principals for the web platform.
               </Lead>
               <Lead>
-                I&apos;ve also built frontends for companies like{" "}
-                <em>HackerRank</em>, <em>Payscale</em>, and <em>Lessonly</em>.
-                I&apos;ve also worked for wonderful startups like <em>Agora</em>{" "}
-                and <em>Mimir</em>.
+                I&apos;ve built frontends for companies like <em>HackerRank</em>
+                , <em>Payscale</em>, and <em>Lessonly</em>. I&apos;ve also
+                worked for wonderful startups like <em>Agora</em> and{" "}
+                <em>Mimir</em>.
               </Lead>
               <Lead>
                 I love the <em>weird web</em>, I collect{" "}
