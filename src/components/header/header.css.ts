@@ -13,4 +13,5 @@ export const header = style({
 export const nav = style({
   display: "flex",
   gap: 24,
+  fontSize: "0.8em",
 });

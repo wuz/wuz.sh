@@ -101,6 +101,7 @@ export const vars = createThemeContract({
   },
 });
 
+
 export const themeClass = style({
   vars: assignVars(vars, {
     width: {

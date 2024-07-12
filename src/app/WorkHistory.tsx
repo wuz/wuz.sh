@@ -1,7 +1,9 @@
+import { Heading } from "@/components/type";
+
 const WorkHistory = () => {
   return (
     <div>
-      <h3>Work History</h3>
+      <Heading level="3">Work History</Heading>
       <ul>
         <li>Whatnot &mdash; Senior Frontend Engineer</li>
         <li>Payscale &mdash; Tech Lead Manager</li>

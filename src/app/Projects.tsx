@@ -1,7 +1,9 @@
+import { Heading } from "@/components/type";
+
 const Projects = () => {
   return (
     <div>
-      <h3>Projects</h3>
+      <Heading level="3">Projects</Heading>
       <ul>
         <li>
           <a href="https://dmpad.app">dmpad</a> &mdash; A note taking

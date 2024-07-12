@@ -10,7 +10,7 @@ import me from "./me.jpeg";
 import AutoGrid from "@/components/auto-grid";
 import PostsDisplay from "@/components/posts-display";
 import Header from "@/components/header";
-import { Lead } from "@/components/type";
+import { Heading, Lead } from "@/components/type";
 import WorkHistory from "./WorkHistory";
 import Projects from "./Projects";
 import Link from "next/link";
@@ -24,14 +24,14 @@ export default function Home() {
         <GridLayout>
           <GridLeft>
             <div className="flow">
-              <h1>Conlin Durbin</h1>
-              <h2>
+              <Heading level="1">Conlin Durbin</Heading>
+              <Heading level="2">
                 Senior Frontend Engineer at{" "}
                 <Link href="https://whatnot.com" className="whatnot-yellow">
                   Whatnot
                 </Link>
                 . Typescripter. TTRPG-er.
-              </h2>
+              </Heading>
             </div>
           </GridLeft>
           <GridRight>
@@ -76,7 +76,7 @@ export default function Home() {
           <GridFull>
             <AutoGrid>
               <div>
-                <h3>Socials</h3>
+                <Heading level="3">Socials</Heading>
                 <ul>
                   <li>
                     <a href="https://linkedin.com/in/wuz">LinkedIn</a>

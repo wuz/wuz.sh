@@ -5,6 +5,7 @@ import { allPosts } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
+import { Heading } from "@/components/type";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -26,7 +27,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {post.coverImage && (
           <img src={post.coverImage} alt={post.description} />
         )}
-        <h1>{post.title}</h1>
+        <Heading level="1">{post.title}</Heading>
         <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
           {format(parseISO(post.date), "MMM d, yyyy")}
         </time>

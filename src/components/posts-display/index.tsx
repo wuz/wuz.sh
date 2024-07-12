@@ -1,6 +1,7 @@
 import { Post, allPosts } from "contentlayer/generated";
 import { compareDesc, format, parseISO } from "date-fns";
 import { listItem, listPost } from "./posts-display.css";
+import { Heading } from "../type";
 
 export async function generateStaticParams() {
   return allPosts
@@ -10,7 +11,7 @@ export async function generateStaticParams() {
     }));
 }
 
-const Post = ({ post }: { post: Post }) => {
+const SinglePost = ({ post }: { post: Post }) => {
   // const MDXContent = useMDXComponent(post.body.code);
   return (
     <li className={listItem}>
@@ -35,10 +36,10 @@ export default async function PostsDisplay({ limit = 5 }: PostsDisplayProps) {
   }
   return (
     <div className="flow">
-      <h3>Recent Writing</h3>
+      <Heading level="3">Recent Writing</Heading>
       <ul role="list" className={listPost}>
         {posts.map((post) => (
-          <Post post={post} key={post._id} />
+          <SinglePost post={post} key={post._id} />
         ))}
       </ul>
     </div>

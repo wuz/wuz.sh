@@ -4,6 +4,7 @@ import { themeClass } from "./theme.css";
 import "./global.css";
 import Favicon from "@/components/favicon";
 
+
 export const metadata: Metadata = {
   title: "Conlin Durbin",
   description: "Senior Frontend Engineer. Typescripter. TTRPG-er",
