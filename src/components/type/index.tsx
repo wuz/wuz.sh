@@ -25,5 +25,5 @@ const redaction = localFont({
 
 export const Heading = ({ children, level, className }: HeadingProps) => {
   const tagName = `h${level}`;
-  return createElement(tagName, { className: clsx(redaction.className, className), children })
+  return createElement(tagName, { className: clsx(redaction.className, className) }, children)
 };
