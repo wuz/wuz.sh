@@ -1,0 +1,44 @@
+---
+title: Inheriting box-sizing and slotted elements
+date: "Jul 24 2024"
+description: An interesting interactions with CSS elements
+published: true
+---
+
+Just a quick post about some CSS interactions I recently ran into.
+
+While recently working on a new design system, I discovered a strange
+interaction with some CSS reset logic.
+
+## Inheriting box-sizing
+
+Based on
+[this](https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/)
+post, I decided to use
+
+```css
+html, :host {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+```
+instead of the usual:
+
+```css
+*, *:before, &:after {
+  box-sizing: border-box;
+}
+```
+
+It was working well until I was trying to fix some styling with a text input
+inside of a `<details>` tag.
+
+Turns out `slot`ted elements like the `<details>` content don't inherit
+box-sizing correctly, instead falling back on to `content-box`.
+
+I didn't have time to really dig in, so for now I'm back to the standard
+version, that doesn't inherit anything. I'll do some more digging in the future
+and see if it's possible to inherit box sizing correctly on those elements. If
+anyone knows how to do that, I'd love to know!
