@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { alert } from "./alert.css";
 
 type AlertProps = {
-  children: ReactNode;
+	children: ReactNode;
 };
 
 const Alert = ({ children }: AlertProps) => {
-  return <div className={alert}>{children}</div>;
+	return <div className={alert}>{children}</div>;
 };
 
 export default Alert;

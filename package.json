@@ -1,33 +1,45 @@
 {
-  "name": "personal-site",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@fontsource-variable/public-sans": "^5.0.16",
-    "@vanilla-extract/css": "^1.13.0",
-    "@vanilla-extract/next-plugin": "^2.3.1",
-    "clsx": "^2.1.1",
-    "contentlayer": "^0.3.4",
-    "date-fns": "^2.30.0",
-    "next": "14.0.1",
-    "next-contentlayer": "^0.3.4",
-    "react": "^18",
-    "react-dom": "^18",
-    "rehype-pretty-code": "^0.10.2",
-    "shiki": "^0.14.5"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.1",
-    "typescript": "^5"
-  }
+	"name": "personal-site",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@fontsource-variable/public-sans": "^5.0.16",
+		"@vanilla-extract/css": "^1.13.0",
+		"@vanilla-extract/next-plugin": "^2.3.1",
+		"clsx": "^2.1.1",
+		"contentlayer": "^0.3.4",
+		"date-fns": "^2.30.0",
+		"next": "15.0.2",
+		"next-contentlayer": "^0.3.4",
+		"react": "19.0.0-rc-02c0e824-20241028",
+		"react-dom": "19.0.0-rc-02c0e824-20241028",
+		"rehype-pretty-code": "^0.10.2",
+		"shiki": "^0.14.5"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@content-collections/core": "^0.7.2",
+		"@content-collections/mdx": "^0.2.0",
+		"@content-collections/next": "^0.2.3",
+		"@shikijs/rehype": "^1.22.2",
+		"@shikijs/transformers": "^1.22.2",
+		"@shikijs/twoslash": "^1.22.2",
+		"@types/node": "^20",
+		"@types/react": "npm:types-react@19.0.0-rc.1",
+		"@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+		"eslint": "^8",
+		"eslint-config-next": "15.0.2",
+		"typescript": "^5"
+	},
+	"resolutions": {
+		"@types/react": "npm:types-react@19.0.0-rc.1",
+		"@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+	},
+	"packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }

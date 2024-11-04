@@ -83,52 +83,51 @@ const electricBlue = "115,255,255";
 const hackerPink = "255,44,117";
 
 export const vars = createThemeContract({
-  width: {
-    maxWidth: null,
-  },
-  color: {
-    foregroundRgb: null,
-    backgroundRgb: null,
-    mutedRgb: null,
-    brandRgb: null,
-  },
-  radius: {
-    small: null,
-    medium: null,
-  },
-  font: {
-    body: null,
-  },
+	width: {
+		maxWidth: null,
+	},
+	color: {
+		foregroundRgb: null,
+		backgroundRgb: null,
+		mutedRgb: null,
+		brandRgb: null,
+	},
+	radius: {
+		small: null,
+		medium: null,
+	},
+	font: {
+		body: null,
+	},
 });
 
-
 export const themeClass = style({
-  vars: assignVars(vars, {
-    width: {
-      maxWidth: "1100px",
-    },
-    color: {
-      foregroundRgb: "0, 0, 0",
-      backgroundRgb: "240, 240, 240",
-      mutedRgb: "160, 160, 160",
-      brandRgb: hackerPink,
-    },
-    radius: {
-      small: "8px",
-      medium: "12px",
-    },
-    font: {
-      body: "'Public Sans Variable', sans-serif",
-    },
-  }),
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      vars: assignVars(vars.color, {
-        backgroundRgb: "0, 0, 0",
-        foregroundRgb: "240, 240, 240",
-        mutedRgb: "160, 160, 160",
-        brandRgb: hackerPink,
-      }),
-    },
-  },
+	vars: assignVars(vars, {
+		width: {
+			maxWidth: "1100px",
+		},
+		color: {
+			foregroundRgb: "0, 0, 0",
+			backgroundRgb: "240, 240, 240",
+			mutedRgb: "160, 160, 160",
+			brandRgb: hackerPink,
+		},
+		radius: {
+			small: "8px",
+			medium: "12px",
+		},
+		font: {
+			body: "'Public Sans Variable', sans-serif",
+		},
+	}),
+	"@media": {
+		"(prefers-color-scheme: dark)": {
+			vars: assignVars(vars.color, {
+				backgroundRgb: "0, 0, 0",
+				foregroundRgb: "240, 240, 240",
+				mutedRgb: "160, 160, 160",
+				brandRgb: hackerPink,
+			}),
+		},
+	},
 });
