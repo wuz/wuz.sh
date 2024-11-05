@@ -3,6 +3,6 @@ import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
 const withVanillaExtract = createVanillaExtractPlugin();
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = { reactStrictMode: true, swcMinify: true };
+const nextConfig: NextConfig = { reactStrictMode: true };
 
-module.exports = withVanillaExtract(withContentCollections(nextConfig));
+module.exports = withContentCollections(withVanillaExtract(nextConfig));
