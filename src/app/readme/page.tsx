@@ -38,9 +38,9 @@ export default function Home() {
 							</p>
 							<p>
 								I have about 1000 hobbies and I&apos;m always excited to learn
-								new things. This README is my personal &quot;documenation&quot;,
-								a way for you to get to know what I care about and where my
-								focus is on any given day.
+								new things. This README is my personal
+								&quot;documentation&quot;, a way for you to get to know what I
+								care about and where my focus is on any given day.
 							</p>
 							<h3>Personal Principles</h3>
 							<ul>

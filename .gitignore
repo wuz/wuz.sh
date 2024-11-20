@@ -38,3 +38,8 @@ next-env.d.ts
 # contentlayer
 .contentlayer
 .content-collections
+
+.direnv
+
+
+result

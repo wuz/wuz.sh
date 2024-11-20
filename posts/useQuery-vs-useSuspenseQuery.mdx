@@ -1,0 +1,61 @@
+---
+title: Apollo useQuery vs useSuspenseQuery
+date: "Nov 18 2024"
+description: What are the differences and what should you use?
+published: false
+---
+
+If you've been around the GraphQL/React space for a bit now, you've probably run
+into the `useQuery` and `useSuspenseQuery` hooks from `@apollo/client`.
+
+These two components can be confusing. What is the difference? Which should you
+use? Is one better than the other?
+
+
+## Understanding Concurrent React
+
+## Understanding Suspense
+
+## `useQuery`
+
+## `useSuspenseQuery`
+
+## What is the difference?
+
+## Which should I use?
+
+Ultimately, this is up to you and the needs of your application.
+`useSuspenseQuery` is more closely aligned to the direction that React is
+heading and forces you to use modern React features like Suspense. `useQuery` is
+simple to use and aligns with the `loading` prop pattern.
+
+I'll be using `useSuspenseQuery` moving forward.
+
+## Some patterns for using `useSuspenseQuery` without losing your mind
+
+### Suspendable/Suspended Components in the same file
+
+```tsx
+type SuspendableComponentProps = {
+  id: string;
+};
+
+const SuspendableComponent = ({id}: SuspendableComponentProps) => {
+  const {data } = useSuspenseQuery(QUERY, {
+    variables: {
+      id,
+      }
+    });
+  return <>{JSON.stringify(data, null, 2)}</>
+};
+
+const SuspendedComponent = (props: SuspendableComponentProps) => {
+  return (
+    <Suspense fallback={<Loader />}>
+      <SuspendableComponent {...props} />
+    </Suspense>
+  );
+};
+
+export default SuspendedComponent;
+```
