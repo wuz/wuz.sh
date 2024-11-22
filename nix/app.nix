@@ -22,6 +22,16 @@ let
   #   # '';
   #   version = "0.0.1";
   # };
+
+  hashes = {
+    "aarch64-darwin" = {
+      outputHash = "sha256-hWaad3tsqMe+3ps404MKa6ab60YuCkP2uCu8DHvE/vo=";
+    };
+    "x86_64-linux" = {
+      outputHash = "sha256-UCKaqVIsZALW4Q0FuDxXMMEHBxtc9Z3J6w9WGz9JeXU=";
+    };
+  };
+
   bunDeps = stdenv.mkDerivation {
     name = "${name}-bun-deps";
     src = nix-filter.lib {
@@ -42,7 +52,7 @@ let
     dontFixup = true;
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = "sha256-hWaad3tsqMe+3ps404MKa6ab60YuCkP2uCu8DHvE/vo=";
+    outputHash = hashes.${stdenv.hostPlatform.system}.outputHash;
     # outputHash = lib.fakeHash;
   };
 in
