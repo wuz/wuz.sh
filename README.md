@@ -22,5 +22,16 @@ be used to run the NextJS site as a standalone app with:
 ./result/entrypoint
 ```
 
-I'm working on getting `nix build .#frontend-image` working to build a layered
-docker image for running the app as well, but running into some difficulties.
+You can also just run the app in the same way:
+
+```bash
+nix run .#frontend-app
+```
+
+## Running with docker
+
+You can build a docker image with nix and copy into the docker daemon like so:
+
+```bash
+nix run .#frontend-image.copyToDockerDaemon
+```

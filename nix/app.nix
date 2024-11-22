@@ -1,17 +1,17 @@
-{
-  name ? "",
-  stdenv,
-  bun-latest,
-  nodejs-slim_22,
-  cacert,
-  inputs,
-  nodePackages,
-  openssl,
+{ name ? ""
+, stdenv
+, bun
+, nodejs-slim_22
+, cacert
+, inputs
+, nodePackages
+, openssl
 }:
 let
   inherit (inputs) nix-filter;
 in
 stdenv.mkDerivation {
+  __noChroot = true;
   NODE_EXTRA_CA_CERTS = "${cacert}/etc/ssl/certs/ca-bundle.crt";
   name = "${name}-frontend";
   src = nix-filter.lib {
@@ -25,7 +25,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     openssl
     nodePackages.npm
-    bun-latest
+    bun
     nodejs-slim_22
   ];
 
@@ -49,16 +49,19 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mv .next/standalone $out
-    cp -R public $out/public
-    mv .next/static $out/.next/static
-    mv node_modules $out/node_modules
-    cat <<ENTRYPOINT > $out/entrypoint
+    mkdir -p $out
+    mv .next/standalone $out/bin
+    cp -R public $out/bin/public
+    mv .next/static $out/bin/.next/static
+    mv node_modules $out/bin/node_modules
+    cat <<ENTRYPOINT > $out/bin/entrypoint
     #!${stdenv.shell}
-    exec "${bun-latest}/bin/bun" "$out/server.js" "$$@"
+    exec "${bun}/bin/bun" "$out/bin/server.js" "$$@"
     ENTRYPOINT
-    chmod +x $out/entrypoint
+    chmod +x $out/bin/entrypoint
 
     runHook postInstall
   '';
+
+  meta.mainProgram = "entrypoint";
 }
