@@ -4,6 +4,7 @@
     extra-trusted-public-keys = [
       "wuz.cachix.org-1:cvFztsdv6usx0iXXs9tbskFTxaozacGaE4WG1uW6W1M="
     ];
+    sandbox = "relaxed";
   };
   description = "wuz.sh nix";
 
@@ -12,18 +13,17 @@
     hex.url = "github:jpetrucciani/hex";
     hex.inputs.nixpkgs.follows = "nixpkgs";
     nix-filter.url = "github:numtide/nix-filter";
-    nix2container.url = "github:nlewo/nix2container";
+    jacobi.url = "github:jpetrucciani/nix";
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      flake-parts,
-      systems,
-      hex,
-      nix2container,
-      ...
+    inputs@{ self
+    , nixpkgs
+    , flake-parts
+    , systems
+    , hex
+    , jacobi
+    , ...
     }:
     let
       name = "wuz.sh";
@@ -31,22 +31,19 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
       flake = {
-        overlays.default = self: super: {
-          bun-latest = self.callPackage ./nix/bun.nix { };
+        overlays.default = self: super: rec {
           frontend-app = self.callPackage ./nix/app.nix { inherit inputs name; };
-          frontend-image = self.callPackage ./nix/docker.nix { inherit inputs; };
+          frontend-image = self.callPackage ./nix/docker.nix { inherit inputs frontend-app; };
         };
       };
       perSystem =
-        {
-          pkgs,
-          system,
-          self',
-          ...
+        { pkgs
+        , system
+        , self'
+        , ...
         }:
         let
           _hex = hex.packages.${system};
-          nix2containerPkgs = nix2container.packages.${system};
         in
         {
           _module.args.pkgs = import nixpkgs {
@@ -57,18 +54,12 @@
 
           packages = {
             inherit (pkgs) bun-latest frontend-app frontend-image;
-            hello = nix2containerPkgs.nix2container.buildImage {
-              name = "hello";
-              config = {
-                entrypoint = [ "${pkgs.hello}/bin/hello" ];
-              };
-            };
           };
 
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
               nodejs
-              bun-latest
+              bun
               nodePackages.typescript
               nodePackages.typescript-language-server
               hcloud
