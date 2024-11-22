@@ -42,6 +42,8 @@ stdenv.mkDerivation {
 
     export HOME=$TMPDIR
     bun run build
+    rm -rf node_modules
+    bun install --no-progress --frozen-lockfile --production
 
     runHook postBuild
   '';
@@ -53,7 +55,6 @@ stdenv.mkDerivation {
     mv .next/standalone $out/bin
     cp -R public $out/bin/public
     mv .next/static $out/bin/.next/static
-    mv node_modules $out/bin/node_modules
     cat <<ENTRYPOINT > $out/bin/entrypoint
     #!${stdenv.shell}
     exec "${bun}/bin/bun" "$out/bin/server.js" "$$@"
