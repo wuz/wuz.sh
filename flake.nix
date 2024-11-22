@@ -4,7 +4,6 @@
     extra-trusted-public-keys = [
       "wuz.cachix.org-1:cvFztsdv6usx0iXXs9tbskFTxaozacGaE4WG1uW6W1M="
     ];
-    sandbox = "relaxed";
   };
   description = "wuz.sh nix";
 
@@ -17,13 +16,13 @@
   };
 
   outputs =
-    inputs@{ self
-    , nixpkgs
-    , flake-parts
-    , systems
-    , hex
-    , jacobi
-    , ...
+    inputs@{
+      self,
+      nixpkgs,
+      flake-parts,
+      systems,
+      hex,
+      ...
     }:
     let
       name = "wuz.sh";
@@ -37,10 +36,10 @@
         };
       };
       perSystem =
-        { pkgs
-        , system
-        , self'
-        , ...
+        {
+          pkgs,
+          system,
+          ...
         }:
         let
           _hex = hex.packages.${system};
