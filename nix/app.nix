@@ -56,6 +56,7 @@ let
     # outputHash = lib.fakeHash;
   };
 in
+assert builtins.hasAttr stdenv.hostPlatform.system hashes;
 stdenv.mkDerivation {
   NODE_EXTRA_CA_CERTS = "${cacert}/etc/ssl/certs/ca-bundle.crt";
   name = "${name}-frontend";
@@ -79,8 +80,6 @@ stdenv.mkDerivation {
     chmod -R +x ./node_modules
     bun run build
   '';
-
-  dontFixup = true;
 
   installPhase = ''
     mkdir -p $out
