@@ -52,7 +52,12 @@
           };
 
           packages = {
-            inherit (pkgs) bun-latest frontend-app frontend-image;
+            inherit (pkgs)
+              bun-latest
+              frontend-app
+              frontend-image
+              skopeo
+              ;
           };
 
           devShells.default = pkgs.mkShell {
