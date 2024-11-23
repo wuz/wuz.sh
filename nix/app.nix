@@ -38,8 +38,8 @@ let
     '';
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    # outputHash = hashes.${stdenv.hostPlatform.system}.outputHash;
-    outputHash = lib.fakeHash;
+    outputHash = hashes.${stdenv.hostPlatform.system}.outputHash;
+    # outputHash = lib.fakeHash;
   };
 in
 assert builtins.hasAttr stdenv.hostPlatform.system hashes;
