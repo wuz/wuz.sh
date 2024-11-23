@@ -31,8 +31,8 @@ let
     buildInputs = [ bun ];
     dontBuild = true;
     dontConfigure = true;
+    dontFixup = true;
     installPhase = ''
-      export HOME=$TMPDIR
       bun install --ignore-scripts --frozen-lockfile
       cp -r ./node_modules $out
     '';
@@ -63,13 +63,9 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    export HOME=$TMPDIR
     cp -r ${bunDeps} ./node_modules
     chmod -R +x ./node_modules
     bun run build
-    rm -rf node_modules
-    bun install --no-progress --frozen-lockfile --production
-    patchShebangs node_modules
 
     runHook postBuild
   '';
@@ -77,8 +73,8 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    export HOME=$TMPDIR
     mkdir -p $out
+    patchShebangs ./.next
     mv .next/standalone $out/bin
     cp -R public $out/bin/public
     mv .next/static $out/bin/.next/static
