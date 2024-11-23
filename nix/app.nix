@@ -10,19 +10,6 @@
 }:
 let
   inherit (inputs) nix-filter;
-  # nodeDeps = yarn2nix-moretea.mkYarnModules {
-  #   pname = "${name}-modules";
-  #   packageJSON = ../package.json;
-  #   yarnLock = ../yarn.lock;
-  #   # yarnLock = runCommand "yarn.lock" { } ''
-  #   #   cp ${../bun.lockb} ./bun.lockb
-  #   #   cp ${../package.json} ./package.json
-  #   #   ${bun}/bin/bun install --yarn --offline
-  #   #   mv yarn.lock $out
-  #   # '';
-  #   version = "0.0.1";
-  # };
-
   hashes = {
     "aarch64-darwin" = {
       outputHash = "sha256-hWaad3tsqMe+3ps404MKa6ab60YuCkP2uCu8DHvE/vo=";
@@ -49,11 +36,10 @@ let
       bun install --ignore-scripts --frozen-lockfile
       cp -r ./node_modules $out
     '';
-    dontFixup = true;
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
-    outputHash = hashes.${stdenv.hostPlatform.system}.outputHash;
-    # outputHash = lib.fakeHash;
+    # outputHash = hashes.${stdenv.hostPlatform.system}.outputHash;
+    outputHash = lib.fakeHash;
   };
 in
 assert builtins.hasAttr stdenv.hostPlatform.system hashes;
@@ -75,13 +61,23 @@ stdenv.mkDerivation {
   ];
 
   buildPhase = ''
+    runHook preBuild
+
     export HOME=$TMPDIR
     cp -r ${bunDeps} ./node_modules
     chmod -R +x ./node_modules
     bun run build
+    rm -rf node_modules
+    bun install --no-progress --frozen-lockfile --production
+    patchShebangs node_modules
+
+    runHook postBuild
   '';
 
   installPhase = ''
+    runHook preInstall
+
+    export HOME=$TMPDIR
     mkdir -p $out
     mv .next/standalone $out/bin
     cp -R public $out/bin/public
@@ -91,6 +87,8 @@ stdenv.mkDerivation {
     ${bun}/bin/bun $out/bin/server.js
     ENTRYPOINT
     chmod +x $out/bin/entrypoint
+
+    runHook postInstall
   '';
 
   meta.mainProgram = "entrypoint";

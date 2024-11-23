@@ -1,5 +1,6 @@
-{ inputs
-, frontend-app
+{
+  inputs,
+  frontend-app,
 }:
 let
   inherit (inputs.jacobi.packages.x86_64-linux.foundry) foundry_v2;
