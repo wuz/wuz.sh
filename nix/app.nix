@@ -1,12 +1,12 @@
-{
-  lib,
-  name ? "",
-  stdenv,
-  bun,
-  cacert,
-  nodejs-slim_22,
-  nodePackages,
-  inputs,
+{ lib
+, name ? ""
+, stdenv
+, bun
+, cacert
+, nodejs-slim_22
+, nodePackages
+, inputs
+,
 }:
 let
   inherit (inputs) nix-filter;
@@ -64,7 +64,8 @@ stdenv.mkDerivation {
     runHook preBuild
 
     cp -r ${bunDeps} ./node_modules
-    chmod -R +x ./node_modules
+    chmod -R +xw ./node_modules
+    patchShebangs ./node_modules
     bun run build
 
     runHook postBuild
