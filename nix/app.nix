@@ -1,12 +1,12 @@
-{
-  lib,
-  name ? "",
-  stdenv,
-  bun,
-  cacert,
-  nodejs-slim_22,
-  nodePackages,
-  inputs,
+{ lib
+, name ? ""
+, stdenv
+, bun
+, cacert
+, nodejs-slim_22
+, nodePackages
+, inputs
+,
 }:
 let
   inherit (inputs) nix-filter;
@@ -15,7 +15,7 @@ let
       outputHash = "sha256-hWaad3tsqMe+3ps404MKa6ab60YuCkP2uCu8DHvE/vo=";
     };
     "x86_64-linux" = {
-      outputHash = "sha256-UCKaqVIsZALW4Q0FuDxXMMEHBxtc9Z3J6w9WGz9JeXU=";
+      outputHash = "sha256-EBSkSuyClzvd4HIh/rKe3SXk5SpGA5wa0O04dIhqBQ4=";
     };
   };
 
@@ -64,7 +64,8 @@ stdenv.mkDerivation {
     runHook preBuild
 
     cp -r ${bunDeps} ./node_modules
-    chmod -R +x ./node_modules
+    chmod -R +xw ./node_modules
+    patchShebangs ./node_modules
     bun run build
 
     runHook postBuild
