@@ -73,6 +73,15 @@ const SocialGrid = () => {
                 <SiThreads />
               </a>
             </li>
+            <li>
+              <a
+                href="https://instagram.com/lich.dad"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiInstagram />
+              </a>
+            </li>
           </ul>
         </div>
         <div>
