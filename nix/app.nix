@@ -1,12 +1,12 @@
-{ lib
-, name ? ""
-, stdenv
-, bun
-, cacert
-, nodejs-slim_22
-, nodePackages
-, inputs
-,
+{
+  lib,
+  name ? "",
+  stdenv,
+  bun,
+  cacert,
+  nodejs-slim_22,
+  nodePackages,
+  inputs,
 }:
 let
   inherit (inputs) nix-filter;

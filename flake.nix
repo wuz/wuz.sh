@@ -8,6 +8,7 @@
   description = "wuz.sh nix";
 
   inputs = {
+    treefmt-nix.url = "github:numtide/treefmt-nix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hex.url = "github:jpetrucciani/hex";
     hex.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +23,7 @@
       flake-parts,
       systems,
       hex,
+      treefmt-nix,
       ...
     }:
     let
@@ -43,12 +45,19 @@
         }:
         let
           _hex = hex.packages.${system};
+          treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
         in
         {
           _module.args.pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
             overlays = [ self.overlays.default ];
+          };
+
+          formatter = treefmtEval.config.build.wrapper;
+          # for `nix flake check`
+          checks = {
+            formatting = treefmtEval.config.build.check self;
           };
 
           packages = {
@@ -62,6 +71,7 @@
 
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
+              treefmt
               nodejs
               bun
               nodePackages.typescript
