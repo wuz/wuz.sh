@@ -15,7 +15,7 @@ let
       outputHash = "sha256-hWaad3tsqMe+3ps404MKa6ab60YuCkP2uCu8DHvE/vo=";
     };
     "x86_64-linux" = {
-      outputHash = "sha256-EBSkSuyClzvd4HIh/rKe3SXk5SpGA5wa0O04dIhqBQ4=";
+      outputHash = "sha256-idxXQ4j9Xrt2psk2YrPOVfOWUslyKSr0OfT0p4I4a+Q=";
     };
   };
 
