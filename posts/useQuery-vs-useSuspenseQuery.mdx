@@ -11,14 +11,85 @@ into the `useQuery` and `useSuspenseQuery` hooks from `@apollo/client`.
 These two components can be confusing. What is the difference? Which should you
 use? Is one better than the other?
 
-
 ## Understanding Concurrent React
 
 ## Understanding Suspense
 
-## `useQuery`
+## What is `useQuery`?
 
-## `useSuspenseQuery`
+`useQuery` is the base hook for making GQL calls in a React frontend. It's
+essentially a wrapper for `fetch` that makes it easier to make GQL requests and
+parse the returned data. All querying happens on the frontend and it returns a
+`loading` variable that is true when data is loading.
+
+A typical `useQuery` looks something like this:
+
+```tsx
+const DataComponent = ({ id }) => {
+  const { data, loading, error } = useQuery(GET_DATA, {
+    variables: {
+        id,
+      }
+  });
+
+  if(loading) {
+    return <Spinner />
+  }
+
+  if(error) {
+    return <Error />
+  }
+
+  return (<div>
+    {data?.map((item) => <RenderItem item={item} />)}
+  </div>);
+};
+```
+
+Importantly, nothing here can render until it hits the client - `useQuery` can't
+use server-side rendering to preload data.
+
+## What is `useSuspenseQuery`?
+
+`useSuspenseQuery`
+
+A typical `useSuspenseQuery` looks something like this:
+
+```tsx
+const DataComponent = ({ id }) => {
+  const { data, error } = useSuspenseQuery(GET_DATA, {
+    variables: {
+        id,
+      }
+  });
+
+  if(error) {
+    return <Error />
+  }
+
+  return (<div>
+    {data?.map((item) => <RenderItem item={item} />)}
+  </div>);
+};
+```
+
+Instead of a `loading` prop that renders a Spinner, we can wrap this component
+in a `<Suspense>` boundary:
+
+```tsx
+const Parent = ({id}) => {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <DataComponent id={id} />
+    </Suspense>
+  );
+};
+```
+
+At first glance, this might seem more complicated than a simple `loading` prop,
+but since we're no longer rendering based on a specific `loading` state, we have
+more control over the suspense of the component. Anytime the `<DataComponent />`
+suspends, we'll get a nice loading state.
 
 ## What is the difference?
 

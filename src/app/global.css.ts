@@ -130,8 +130,9 @@ globalStyle(".flow > * + *", { marginTop: "1em" });
 
 globalStyle("time", {
   color: `rgb(${vars.color.mutedRgb})`,
-  fontFamily: "monospace",
+  fontFamily: vars.font.mono,
   fontSize: "0.75em",
+  fontVariationSettings: '"wdth" 75, "wght" 500, "casl" 0',
 });
 
 globalStyle(".muted", {
@@ -139,21 +140,26 @@ globalStyle(".muted", {
 });
 
 globalStyle("code", {
-  padding: "4px 4px",
+  padding: "2px 4px",
+  color: `rgb(${vars.color.brandRgb})`,
+  fontSize: "0.9em",
+  background: "rgb(31, 31, 31)",
+  borderRadius: vars.radius.small,
+  counterReset: "line",
+  fontFamily: vars.font.mono,
+  fontVariationSettings: '"wdth" 75, "wght" 500, "casl" 0',
 });
 
 globalStyle("pre", {
   borderRadius: vars.radius.small,
+  fontFamily: vars.font.mono,
+  fontVariationSettings: '"wdth" 75, "wght" 500, "casl" 0',
 });
 
 globalStyle("pre > code", {
   display: "grid",
   overflow: "auto",
   padding: "16px",
-});
-
-globalStyle("code", {
-  counterReset: "line",
 });
 
 globalStyle("code > [data-line]::before", {
