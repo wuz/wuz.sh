@@ -10,6 +10,7 @@ import {
 import { EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import RetroEffect from "./RetroEffect";
+import { SetOptional } from "type-fest";
 
 const waveVertexShader = `
 precision highp float;
@@ -215,6 +216,10 @@ function DitheredWaves({
 	);
 }
 
+type DitherProps = SetOptional<DitheredWavesProps, keyof DitheredWavesProps> & {
+	className: string;
+};
+
 export default function Dither({
 	waveSpeed = 0.05,
 	waveFrequency = 3,
@@ -225,8 +230,8 @@ export default function Dither({
 	disableAnimation = false,
 	enableMouseInteraction = true,
 	mouseRadius = 1,
-	className = "",
-}: DitheredWavesProps & { className: string }) {
+	className,
+}: DitherProps) {
 	const [isClient, setIsClient] = useState(false);
 	useEffect(() => {
 		setIsClient(true);
