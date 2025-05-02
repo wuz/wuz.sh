@@ -31,7 +31,8 @@ export default function Home() {
 								<Link href="https://whatnot.com" className="whatnot-yellow">
 									Whatnot
 								</Link>
-								. Typescripter. TTRPG-er.
+								. Typescripter.{" "}
+								<Link href="https://infinite-citadel.com">TTRPG-er</Link>.
 							</Heading>
 						</div>
 					</GridLeft>
@@ -39,21 +40,32 @@ export default function Home() {
 						<div className="flow">
 							<Lead>
 								Howdy, I&apos;m Conlin. I live in Indianapolis and I love to
-								travel. I currently work on App Platform at <em>Whatnot</em>,
-								building performant, accessible frontends and establishing
+								travel. I currently work on App Platform at{" "}
+								<Link href="https://whatnot.com">
+									<em>Whatnot</em>
+								</Link>
+								, building performant, accessible frontends and establishing
 								architectural principals for the web platform.
 							</Lead>
 							<Lead>
 								I&apos;ve built frontends for companies like <em>HackerRank</em>
 								, <em>Payscale</em>, and <em>Lessonly</em>. I&apos;ve also
-								worked for wonderful startups like <em>Agora</em> and{" "}
-								<em>Mimir</em>.
+								worked for early startups like <em>Agora</em> and <em>Mimir</em>
+								.
 							</Lead>
 							<Lead>
 								I love the <em>weird web</em>, I collect{" "}
 								<em>physical media formats</em>, I play lots of{" "}
-								<em>tabletop roleplaying games</em>, and I love to cook,
-								especially <em>Korean food</em>.
+								<em>tabletop roleplaying games</em> and make them with{" "}
+								<Link href="https://infinite-citadel.com">
+									<em>Infinite Citadel</em>
+								</Link>
+								, and I love to cook, especially <em>Korean food</em>. I also
+								dabble in{" "}
+								<Link href="https://www.flickr.com/photos/192700574@N03/">
+									<em>photography</em>
+								</Link>
+								.
 							</Lead>
 						</div>
 					</GridRight>

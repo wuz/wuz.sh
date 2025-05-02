@@ -1,4 +1,5 @@
 import { horizontalList, socialGrid } from "./social-grid.css";
+import Link from "next/link";
 import {
   SiLinkedin,
   SiGithub,
@@ -10,6 +11,7 @@ import {
   SiThreads,
   SiInstagram,
   SiX,
+  SiFlickr,
 } from "@icons-pack/react-simple-icons";
 import { Video } from "lucide-react";
 import { Heading, Lead } from "@/components/type";
@@ -23,23 +25,27 @@ const SocialGrid = () => {
           <Heading level="4">Work</Heading>
           <ul className={horizontalList}>
             <li>
-              <a
+              <Link
                 href="https://linkedin.com/in/wuz"
                 target="_blank"
                 rel="noreferrer"
               >
                 <SiLinkedin />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="https://dev.to/wuz" target="_blank" rel="noreferrer">
+              <Link href="https://dev.to/wuz" target="_blank" rel="noreferrer">
                 <SiDevdotto />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="https://github.com/wuz" target="_blank" rel="noreferrer">
+              <Link
+                href="https://github.com/wuz"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <SiGithub />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -47,40 +53,54 @@ const SocialGrid = () => {
           <Heading level="4">Socials</Heading>
           <ul className={horizontalList}>
             <li>
-              <a
-                href="https://bsky.app/profile/lich.dad"
+              <Link
+                href="https://bsky.app/profile/wuz.sh"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Bluesky profile"
               >
                 <SiBluesky />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="https://twitch.tv/hasbeenwizards"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Twitch profile"
               >
                 <SiTwitch />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="https://threads.net/lich.dad"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Threads profile"
               >
                 <SiThreads />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="https://instagram.com/lich.dad"
+              <Link
+                href="https://instagram.com/conlindurbin"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Instagram profile"
               >
                 <SiInstagram />
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://www.flickr.com/photos/192700574@N03/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Flickr profile"
+              >
+                <SiFlickr />
+              </Link>
             </li>
           </ul>
         </div>
@@ -88,22 +108,22 @@ const SocialGrid = () => {
           <Heading level="4">Stats &amp; Reviews</Heading>
           <ul className={horizontalList}>
             <li>
-              <a
+              <Link
                 href="https://letterboxd.com/wuz/"
                 target="_blank"
                 rel="noreferrer"
               >
                 <SiLetterboxd />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="https://www.last.fm/user/lichdad"
                 target="_blank"
                 rel="noreferrer"
               >
                 <SiLastdotfm />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -111,13 +131,13 @@ const SocialGrid = () => {
           <Heading level="4">Unused, but existing</Heading>
           <ul className={horizontalList}>
             <li>
-              <a
+              <Link
                 href="https://twitter.com/itswuz"
                 target="_blank"
                 rel="noreferrer"
               >
                 <SiX />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

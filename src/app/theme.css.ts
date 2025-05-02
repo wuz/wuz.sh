@@ -99,6 +99,7 @@ export const vars = createThemeContract({
   font: {
     body: null,
     mono: null,
+    emphasis: null,
   },
 });
 
@@ -120,6 +121,7 @@ export const themeClass = style({
     font: {
       body: "'Public Sans Variable', sans-serif",
       mono: "'Source Code Pro Variable', monospace",
+      emphasis: "var(--font-redaction)",
     },
   }),
   "@media": {

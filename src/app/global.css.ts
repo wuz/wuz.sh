@@ -119,6 +119,13 @@ globalStyle("a:not([class]):hover", {
 globalStyle("em", {
   fontVariationSettings: '"ital" 1',
   fontStyle: "italic",
+  fontFamily: vars.font.emphasis,
+});
+
+globalStyle(".font-redaction", {
+  fontVariationSettings: '"ital" 1',
+  fontStyle: "italic",
+  fontFamily: vars.font.emphasis,
 });
 
 globalStyle("p", {

@@ -1,27 +1,23 @@
 import Logo from "@/components/logo";
 import localFont from "next/font/local";
 import { header, nav } from "./header.css";
-
-const redaction = localFont({
-  src: "../../fonts/Redaction_35-Italic.woff2",
-  display: "swap",
-});
+import Link from "next/link";
 
 const Header = () => {
-  return (
-    <header className={header}>
-      <a href="/" aria-label="Home">
-        <Logo />
-      </a>
-      <strong className={redaction.className}>wuz.sh</strong>
-      <nav className={nav}>
-        <a href="/posts">Writing</a>
-        <a href="/readme">Readme</a>
-        {/* <a href="/uses">/uses</a> */}
-        {/* <a href="/now">/now</a> */}
-      </nav>
-    </header>
-  );
+	return (
+		<header className={header}>
+			<Link href="/" aria-label="Home">
+				<Logo />
+			</Link>
+			<strong className="font-redaction">wuz.sh</strong>
+			<nav className={nav}>
+				<Link href="/posts">Writing</Link>
+				<Link href="/readme">Readme</Link>
+				{/* <a href="/uses">/uses</a> */}
+				{/* <a href="/now">/now</a> */}
+			</nav>
+		</header>
+	);
 };
 
 export default Header;
