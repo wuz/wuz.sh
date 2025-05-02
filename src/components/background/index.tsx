@@ -1,7 +1,13 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { EffectComposer, wrapEffect } from "@react-three/postprocessing";
+import {
+	Canvas,
+	useFrame,
+	useThree,
+	ThreeElements,
+	ThreeEvent,
+} from "@react-three/fiber";
+import { EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
 import RetroEffect from "./RetroEffect";
 
@@ -96,6 +102,18 @@ void main() {
 }
 `;
 
+type DitheredWavesProps = {
+	waveSpeed: number;
+	waveFrequency: number;
+	waveAmplitude: number;
+	waveColor: [number, number, number];
+	colorNum: number;
+	pixelSize: number;
+	disableAnimation: boolean;
+	enableMouseInteraction: boolean;
+	mouseRadius: number;
+};
+
 function DitheredWaves({
 	waveSpeed,
 	waveFrequency,
@@ -106,9 +124,9 @@ function DitheredWaves({
 	disableAnimation,
 	enableMouseInteraction,
 	mouseRadius,
-}) {
+}: DitheredWavesProps) {
 	const mesh = useRef(null);
-	const effect = useRef(null);
+	const effect = useRef<ThreeElements["primitive"]>(null);
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 	const { viewport, size, gl } = useThree();
 
@@ -162,7 +180,7 @@ function DitheredWaves({
 		}
 	});
 
-	const handlePointerMove = (e) => {
+	const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
 		if (!enableMouseInteraction) return;
 		const rect = gl.domElement.getBoundingClientRect();
 		const dpr = gl.getPixelRatio();
@@ -208,7 +226,7 @@ export default function Dither({
 	enableMouseInteraction = true,
 	mouseRadius = 1,
 	className = "",
-}) {
+}: DitheredWavesProps & { className: string }) {
 	const [isClient, setIsClient] = useState(false);
 	useEffect(() => {
 		setIsClient(true);

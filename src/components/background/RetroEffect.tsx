@@ -1,6 +1,7 @@
 import React, { forwardRef, useMemo } from "react";
 import { Effect } from "postprocessing";
 import * as THREE from "three";
+import { ThreeElements } from "@react-three/fiber";
 
 const ditherFragmentShader = `
 precision highp float;
@@ -41,39 +42,39 @@ void mainImage(in vec4 inputColor, in vec2 uv, out vec4 outputColor) {
 let _uParam;
 
 class RetroEffectImpl extends Effect {
-  constructor() {
-    const uniforms = new Map([
-      ["colorNum", new THREE.Uniform(4.0)],
-      ["pixelSize", new THREE.Uniform(2.0)],
-    ]);
-    super("RetroEffect", ditherFragmentShader, { uniforms });
-    _uParam = uniforms;
-  }
-  set colorNum(value) {
-    const colorNum = this.uniforms.get("colorNum");
-    if (!colorNum) {
-      return;
-    }
-    colorNum.value = value;
-  }
-  get colorNum() {
-    return this.uniforms.get("colorNum")?.value;
-  }
-  set pixelSize(value) {
-    const pixelSize = this.uniforms.get("pixelSize");
-    if (!pixelSize) {
-      return;
-    }
-    pixelSize.value = value;
-  }
-  get pixelSize() {
-    return this.uniforms.get("pixelSize")?.value;
-  }
+	constructor() {
+		const uniforms = new Map([
+			["colorNum", new THREE.Uniform(4.0)],
+			["pixelSize", new THREE.Uniform(2.0)],
+		]);
+		super("RetroEffect", ditherFragmentShader, { uniforms });
+		_uParam = uniforms;
+	}
+	set colorNum(value) {
+		const colorNum = this.uniforms.get("colorNum");
+		if (!colorNum) {
+			return;
+		}
+		colorNum.value = value;
+	}
+	get colorNum() {
+		return this.uniforms.get("colorNum")?.value;
+	}
+	set pixelSize(value) {
+		const pixelSize = this.uniforms.get("pixelSize");
+		if (!pixelSize) {
+			return;
+		}
+		pixelSize.value = value;
+	}
+	get pixelSize() {
+		return this.uniforms.get("pixelSize")?.value;
+	}
 }
 
-const RetroEffect = forwardRef((_, ref) => {
-  const effect = useMemo(() => new RetroEffectImpl(), []);
-  return <primitive ref={ref} object={effect} dispose={null} />;
+const RetroEffect = forwardRef<ThreeElements["primitive"]>((_, ref) => {
+	const effect = useMemo(() => new RetroEffectImpl(), []);
+	return <primitive ref={ref} object={effect} dispose={null} />;
 });
 
 export default RetroEffect;
