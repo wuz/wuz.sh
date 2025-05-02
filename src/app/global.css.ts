@@ -64,11 +64,18 @@ globalStyle("body", {
   lineHeight: 1.5,
   fontFamily: vars.font.body,
   fontVariationSettings: '"ital" 0, "wght", 300',
+  background: `linear-gradient(45deg,#ff9aa2,#ffb7b2,#ffdac1,#e2f0cb,#b5ead7,#c7ceea,#eab2f3,#ff9aa2,#ffb7b2,#ffdac1,#e2f0cb,#b5ead7,#c7ceea)`,
   fontWeight: 300,
   color: `rgb(${vars.color.foregroundRgb})`,
-  background: `linear-gradient(45deg,#ff9aa2,#ffb7b2,#ffdac1,#e2f0cb,#b5ead7,#c7ceea,#eab2f3,#ff9aa2,#ffb7b2,#ffdac1,#e2f0cb,#b5ead7,#c7ceea)`,
   padding: "2%",
   fontSize: 18,
+});
+
+globalStyle("body > .background", {
+  position: "fixed",
+  inset: 0,
+  mixBlendMode: "multiply",
+  zIndex: "0",
 });
 
 globalStyle("body > .content", {
@@ -79,6 +86,8 @@ globalStyle("body > .content", {
   height: "calc(100vh - 2%)",
   maxWidth: 1440,
   margin: "0 auto",
+  position: "relative",
+  zIndex: "1",
 });
 
 globalStyle("*", {

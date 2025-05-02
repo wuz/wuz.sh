@@ -5,6 +5,7 @@ import "@fontsource-variable/source-code-pro";
 import { themeClass } from "./theme.css";
 import "./global.css";
 import Favicon from "@/components/favicon";
+import Dither from "@/components/background";
 
 export const metadata: Metadata = {
   title: "Conlin Durbin",
@@ -27,6 +28,17 @@ export default function RootLayout({
         ></script>
       </head>
       <body className={themeClass}>
+        <Dither
+          className="background"
+          waveColor={[0.5, 0.5, 0.5]}
+          disableAnimation={false}
+          enableMouseInteraction={true}
+          mouseRadius={0.3}
+          colorNum={4}
+          waveAmplitude={0.3}
+          waveFrequency={3}
+          waveSpeed={0.05}
+        />
         <div className="content">{children}</div>
       </body>
     </html>
