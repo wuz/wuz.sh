@@ -4,8 +4,8 @@ const withVanillaExtract = createVanillaExtractPlugin();
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  output: "standalone",
+	reactStrictMode: true,
+	output: "export",
 };
 
 module.exports = withContentCollections(withVanillaExtract(nextConfig));
