@@ -5,7 +5,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	reactStrictMode: true,
-	output: "export",
+	output: "standalone",
+	serverExternalPackages: ["shiki", "twoslash"],
 };
 
 module.exports = withContentCollections(withVanillaExtract(nextConfig));

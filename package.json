@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbo",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "next start -p 3006",
 		"lint": "next lint"
@@ -18,8 +18,10 @@
 		"@icons-pack/react-simple-icons": "^12.8.0",
 		"@react-three/fiber": "^9.1.2",
 		"@react-three/postprocessing": "^3.0.4",
-		"@shikijs/rehype": "^1.22.2",
-		"@shikijs/transformers": "^1.22.2",
+		"@shikijs/rehype": "^3.4.1",
+		"@shikijs/transformers": "^3.4.1",
+		"@shikijs/twoslash": "^3.4.1",
+		"@types/mdx": "^2.0.13",
 		"@vanilla-extract/css": "^1.17.2",
 		"@vanilla-extract/next-plugin": "^2.4.11",
 		"clsx": "^2.1.1",
@@ -29,21 +31,20 @@
 		"postprocessing": "^6.37.3",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
-		"rehype-pretty-code": "^0.10.2",
-		"shiki": "^0.14.5",
+		"rehype-pretty-code": "^0.14.1",
+		"shiki": "^3.4.1",
 		"simple-icons": "^14.13.0",
-		"three": "^0.176.0"
+		"three": "^0.176.0",
+		"twoslash": "^0.3.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@shikijs/twoslash": "^1.24.0",
 		"@types/node": "^22.15.18",
 		"@types/react": "19.1.4",
 		"@types/react-dom": "19.1.5",
 		"@types/three": "^0.176.0",
 		"eslint": "^9.26.0",
 		"eslint-config-next": "15.3.2",
-		"twoslash": "^0.2.12",
 		"type-fest": "^4.41.0",
 		"typescript": "^5.8.3"
 	},
