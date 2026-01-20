@@ -68,6 +68,7 @@ globalStyle("body", {
   fontWeight: 300,
   color: `rgb(${vars.color.foregroundRgb})`,
   padding: "2%",
+  paddingTop: "calc(36px + 2%)",
   fontSize: 18,
 });
 

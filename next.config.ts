@@ -10,3 +10,6 @@ const nextConfig: NextConfig = {
 };
 
 module.exports = withContentCollections(withVanillaExtract(nextConfig));
+
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();
