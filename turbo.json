@@ -1,0 +1,29 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [".next/**", "!.next/cache/**", ".open-next/**"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {
+			"outputs": []
+		},
+		"cf-build": {
+			"dependsOn": ["build"],
+			"outputs": [".open-next/**"]
+		},
+		"deploy": {
+			"dependsOn": ["cf-build"],
+			"cache": false
+		},
+		"preview": {
+			"dependsOn": ["cf-build"],
+			"cache": false
+		}
+	}
+}

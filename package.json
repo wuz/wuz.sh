@@ -1,64 +1,24 @@
 {
-	"name": "personal-site",
-	"version": "0.1.0",
+	"name": "wuz-monorepo",
+	"version": "0.0.0",
 	"private": true,
+	"packageManager": "bun@1.3.13",
+	"workspaces": [
+		"sites/*",
+		"packages/*"
+	],
 	"scripts": {
-		"dev": "next dev",
-		"start": "next start -p 3006",
-		"lint": "next lint",
-		"build": "next build",
-		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-		"upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
-	},
-	"dependencies": {
-		"@content-collections/core": "^0.15.2",
-		"@content-collections/mdx": "^0.2.2",
-		"@content-collections/next": "^0.2.11",
-		"@fontsource-variable/public-sans": "^5.2.7",
-		"@fontsource-variable/recursive": "^5.2.8",
-		"@fontsource-variable/source-code-pro": "^5.2.7",
-		"@icons-pack/react-simple-icons": "^13.13.0",
-		"@opennextjs/cloudflare": "^1.19.11",
-		"@react-three/fiber": "9.1.2",
-		"@react-three/postprocessing": "3.0.4",
-		"@shikijs/rehype": "^4.2.0",
-		"@shikijs/transformers": "^4.2.0",
-		"@shikijs/twoslash": "^4.2.0",
-		"@tailwindcss/postcss": "^4.3.1",
-		"@types/mdx": "^2.0.14",
-		"@vanilla-extract/css": "^1.20.1",
-		"@vanilla-extract/next-plugin": "^2.5.2",
-		"clsx": "^2.1.1",
-		"date-fns": "^4.4.0",
-		"lucide-react": "^1.21.0",
-		"next": "16.2.9",
-		"postcss": "^8.5.15",
-		"postprocessing": "6.39.1",
-		"react": "19.2.7",
-		"react-dom": "19.2.7",
-		"react-icons": "^5.6.0",
-		"rehype-pretty-code": "^0.14.3",
-		"shiki": "^4.2.0",
-		"simple-icons": "^16.24.0",
-		"tailwindcss": "^4.3.1",
-		"three": "0.177.0",
-		"twoslash": "^0.3.9"
-	},
-	"overrides": {
-		"postprocessing": "6.39.1"
+		"build:wuz-sh": "turbo run build --filter=@wuz/wuz-sh",
+		"build:wuz-quest": "turbo run build --filter=@wuz/wuz-quest",
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"deploy:wuz-sh": "turbo run deploy --filter=@wuz/wuz-sh",
+		"deploy:wuz-quest": "turbo run deploy --filter=@wuz/wuz-quest",
+		"deploy:all": "turbo run deploy"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.0",
-		"@types/node": "^26.0.0",
-		"@types/react": "19.2.17",
-		"@types/react-dom": "19.2.3",
-		"@types/three": "0.177.0",
-		"eslint": "^10.5.0",
-		"eslint-config-next": "16.2.9",
-		"type-fest": "^5.7.0",
-		"typescript": "^6.0.3",
-		"wrangler": "^4.103.0"
+		"turbo": "^2.5.4"
 	}
 }

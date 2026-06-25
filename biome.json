@@ -7,7 +7,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**"]
+		"includes": [
+			"**",
+			"!**/node_modules/**",
+			"!**/.next/**",
+			"!**/.open-next/**",
+			"!**/.wrangler/**",
+			"!**/.content-collections/**"
+		]
 	},
 	"formatter": {
 		"enabled": true,

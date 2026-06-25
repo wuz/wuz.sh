@@ -4,11 +4,11 @@ import "@fontsource-variable/public-sans";
 import "@fontsource-variable/recursive";
 import "@fontsource-variable/source-code-pro";
 import "./tailwind.css";
+import { Verse } from "@wuz/ui";
 import localFont from "next/font/local";
 import type { CSSProperties } from "react";
 import Dither from "@/components/background";
 import Favicon from "@/components/favicon";
-import Verse from "@/components/verse";
 
 const redaction = localFont({
 	src: "../fonts/Redaction_35-Italic.woff2",
@@ -52,7 +52,7 @@ export default function RootLayout({
 					waveFrequency={3}
 					waveSpeed={0.05}
 				/>
-				<Verse />
+				<Verse currentSite="software" />
 				<div className="content">{children}</div>
 			</body>
 		</html>
