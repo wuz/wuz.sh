@@ -13,6 +13,6 @@ foundry_v2 {
   sysLayer = false;
   layers = [ [ frontend-app ] ];
   extraConfig = {
-    Cmd = [ "/bin/entrypoint" ];
+    Cmd = [ "/bin/wuz.sh" ];
   };
 }

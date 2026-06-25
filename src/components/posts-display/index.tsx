@@ -1,54 +1,43 @@
-import { type Post, allPosts } from "content-collections";
-import { compareDesc, format, parseISO } from "date-fns";
-import { listItem, listPost } from "./posts-display.css";
+import { allPosts, type Post } from "content-collections";
+import { compareDesc, format, isValid } from "date-fns";
 import { Heading } from "../type";
 
-export async function generateStaticParams() {
-  return allPosts
-    .filter((post) => post.published)
-    .map((post) => ({
-      slug: post._meta.path,
-    }));
-}
-
-const SinglePost = ({ post }: { post: Post }) => {
-  const date = post.date ? new Date(post.date) : null;
-  return (
-    <li className={listItem}>
-      {date && (
-        <time
-          dateTime={date.toISOString()}
-          className="mb-2 block text-xs text-gray-600"
-        >
-          {format(date, "MMM d, yyyy")}
-        </time>
-      )}
-      <a href={post.url}>{post.title}</a>
-    </li>
-  );
+const SinglePost = ({ post, date }: { post: Post; date: Date | null }) => {
+	return (
+		<li className="grid grid-cols-[auto_1fr] gap-4 items-center">
+			{date && (
+				<time
+					dateTime={date.toISOString()}
+					className="text-sm text-gray-haze font-mono"
+				>
+					{format(date, "MMM d, yyyy")}
+				</time>
+			)}
+			<a href={post.url}>{post.title}</a>
+		</li>
+	);
 };
 
 type PostsDisplayProps = {
-  limit?: number;
+	limit?: number;
 };
 
 export default async function PostsDisplay({ limit = 5 }: PostsDisplayProps) {
-  let posts = allPosts
-    .filter((post) => post.published && post.date)
-    .sort((a, b) =>
-      a.date && b.date ? compareDesc(new Date(a.date), new Date(b.date)) : 0,
-    );
-  if (limit) {
-    posts = posts.slice(0, limit);
-  }
-  return (
-    <div className="flow">
-      <Heading level="3">Recent Writing</Heading>
-      <ul role="list" className={listPost}>
-        {posts.map((post) => (
-          <SinglePost post={post} key={post._meta.path} />
-        ))}
-      </ul>
-    </div>
-  );
+	const postsWithDates = allPosts
+		.filter((post) => post.published && post.date)
+		.map((post) => ({ post, date: new Date(post.date as string) }))
+		.filter(({ date }) => isValid(date))
+		.sort((a, b) => compareDesc(a.date, b.date))
+		.slice(0, limit);
+
+	return (
+		<div className="flow">
+			<Heading level="3">Recent Writing</Heading>
+			<ul className="space-y-4 mt-4">
+				{postsWithDates.map(({ post, date }) => (
+					<SinglePost post={post} date={date} key={post._meta.path} />
+				))}
+			</ul>
+		</div>
+	);
 }

@@ -1,8 +1,12 @@
 {
   nixConfig = {
-    extra-substituters = [ "https://wuz.cachix.org" ];
+    extra-substituters = [
+      "https://wuz.cachix.org"
+      "https://nix-community.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "wuz.cachix.org-1:cvFztsdv6usx0iXXs9tbskFTxaozacGaE4WG1uW6W1M="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
   description = "wuz.sh nix";
@@ -14,6 +18,7 @@
     hex.inputs.nixpkgs.follows = "nixpkgs";
     nix-filter.url = "github:numtide/nix-filter";
     jacobi.url = "github:jpetrucciani/nix";
+    bun2nix.url = "github:nix-community/bun2nix";
   };
 
   outputs =
@@ -24,6 +29,7 @@
       systems,
       hex,
       treefmt-nix,
+      bun2nix,
       ...
     }:
     let
@@ -32,9 +38,14 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
       flake = {
-        overlays.default = self: super: rec {
-          frontend-app = self.callPackage ./nix/app.nix { inherit inputs name; };
-          frontend-image = self.callPackage ./nix/docker.nix { inherit inputs frontend-app; };
+        overlays.default = _self: _super: rec {
+          frontend-app = _self.callPackage ./nix/app.nix {
+            inherit name;
+            bun2nix-cli = bun2nix.packages.${_self.system}.default;
+          };
+          frontend-image = _self.callPackage ./nix/docker.nix {
+            inherit inputs frontend-app;
+          };
         };
       };
       perSystem =
@@ -46,6 +57,7 @@
         let
           _hex = hex.packages.${system};
           treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+          bun2nix-cli = bun2nix.packages.${system}.default;
         in
         {
           _module.args.pkgs = import nixpkgs {
@@ -62,20 +74,18 @@
 
           packages = {
             inherit (pkgs)
-              bun-latest
               frontend-app
               frontend-image
               skopeo
               ;
+            inherit bun2nix-cli;
           };
 
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
               treefmt
-              nodejs
               bun
-              nodePackages.typescript
-              nodePackages.typescript-language-server
+              bun2nix-cli
               hcloud
               opentofu
               kubectl

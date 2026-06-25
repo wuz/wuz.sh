@@ -1,22 +1,19 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
 import {
 	Canvas,
+	type ThreeElements,
+	type ThreeEvent,
 	useFrame,
 	useThree,
-	ThreeElements,
-	ThreeEvent,
 } from "@react-three/fiber";
 import { EffectComposer } from "@react-three/postprocessing";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import RetroEffect from "./RetroEffect";
-import { SetOptional } from "type-fest";
 
 const waveVertexShader = `
 precision highp float;
-varying vec2 vUv;
 void main() {
-  vUv = uv;
   vec4 modelPosition = modelMatrix * vec4(position, 1.0);
   vec4 viewPosition = viewMatrix * modelPosition;
   gl_Position = projectionMatrix * viewPosition;
@@ -82,8 +79,8 @@ float fbm(vec2 p) {
 }
 
 float pattern(vec2 p) {
-  vec2 p2 = p - time * waveSpeed;
-  return fbm(p - fbm(p + fbm(p2)));
+  vec2 offset = vec2(time * waveSpeed, time * waveSpeed * 0.7);
+  return fbm(p + offset - fbm(p + fbm(p)));
 }
 
 void main() {
@@ -110,7 +107,7 @@ type DitheredWavesProps = {
 	waveColor: [number, number, number];
 	colorNum: number;
 	pixelSize: number;
-	disableAnimation: boolean;
+	isAnimated: boolean;
 	enableMouseInteraction: boolean;
 	mouseRadius: number;
 };
@@ -122,7 +119,7 @@ function DitheredWaves({
 	waveColor,
 	colorNum,
 	pixelSize,
-	disableAnimation,
+	isAnimated,
 	enableMouseInteraction,
 	mouseRadius,
 }: DitheredWavesProps) {
@@ -150,19 +147,14 @@ function DitheredWaves({
 		const currentRes = waveUniformsRef.current.resolution.value;
 		if (currentRes.x !== newWidth || currentRes.y !== newHeight) {
 			currentRes.set(newWidth, newHeight);
-			if (
-				effect.current &&
-				effect.current.uniforms &&
-				effect.current.uniforms.resolution &&
-				effect.current.uniforms.resolution.value
-			) {
+			if (effect.current?.uniforms?.resolution?.value) {
 				effect.current.uniforms.resolution.value.set(newWidth, newHeight);
 			}
 		}
 	}, [size, gl]);
 
 	useFrame(({ clock }) => {
-		if (!disableAnimation) {
+		if (isAnimated) {
 			waveUniformsRef.current.time.value = clock.getElapsedTime();
 		}
 		waveUniformsRef.current.waveSpeed.value = waveSpeed;
@@ -216,7 +208,7 @@ function DitheredWaves({
 	);
 }
 
-type DitherProps = SetOptional<DitheredWavesProps, keyof DitheredWavesProps> & {
+type DitherProps = Partial<DitheredWavesProps> & {
 	className: string;
 };
 
@@ -227,23 +219,16 @@ export default function Dither({
 	waveColor = [0.5, 0.5, 0.5],
 	colorNum = 4,
 	pixelSize = 2,
-	disableAnimation = false,
+	isAnimated = true,
 	enableMouseInteraction = true,
 	mouseRadius = 1,
 	className,
 }: DitherProps) {
-	const [isClient, setIsClient] = useState(false);
-	useEffect(() => {
-		setIsClient(true);
-	}, []);
-	if (!isClient) {
-		return false;
-	}
 	return (
 		<div className={className}>
 			<Canvas
 				camera={{ position: [0, 0, 6] }}
-				dpr={window.devicePixelRatio}
+				dpr={[1, 2]}
 				gl={{ antialias: true, preserveDrawingBuffer: true }}
 			>
 				<DitheredWaves
@@ -253,7 +238,7 @@ export default function Dither({
 					waveColor={waveColor}
 					colorNum={colorNum}
 					pixelSize={pixelSize}
-					disableAnimation={disableAnimation}
+					isAnimated={isAnimated}
 					enableMouseInteraction={enableMouseInteraction}
 					mouseRadius={mouseRadius}
 				/>

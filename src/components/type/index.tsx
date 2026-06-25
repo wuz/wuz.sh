@@ -1,5 +1,4 @@
 import { type ReactNode, createElement } from "react";
-import { lead } from "./type.css";
 import clsx from "clsx";
 
 type LeadProps = {
@@ -7,7 +6,7 @@ type LeadProps = {
 };
 
 export const Lead = ({ children }: LeadProps) => {
-  return <p className={lead}>{children}</p>;
+  return <p className="text-2xl text-wrap-pretty max-w-[40ch]">{children}</p>;
 };
 
 type HeadingProps = {

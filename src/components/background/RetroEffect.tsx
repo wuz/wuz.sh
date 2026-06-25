@@ -1,7 +1,7 @@
-import React, { forwardRef, useMemo } from "react";
+import type { ThreeElements } from "@react-three/fiber";
 import { Effect } from "postprocessing";
+import { forwardRef, useMemo } from "react";
 import * as THREE from "three";
-import { ThreeElements } from "@react-three/fiber";
 
 const ditherFragmentShader = `
 precision highp float;
@@ -39,8 +39,6 @@ void mainImage(in vec4 inputColor, in vec2 uv, out vec4 outputColor) {
 }
 `;
 
-let _uParam;
-
 class RetroEffectImpl extends Effect {
 	constructor() {
 		const uniforms = new Map([
@@ -48,7 +46,6 @@ class RetroEffectImpl extends Effect {
 			["pixelSize", new THREE.Uniform(2.0)],
 		]);
 		super("RetroEffect", ditherFragmentShader, { uniforms });
-		_uParam = uniforms;
 	}
 	set colorNum(value) {
 		const colorNum = this.uniforms.get("colorNum");
